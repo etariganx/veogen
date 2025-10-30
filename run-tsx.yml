@@ -1,0 +1,26 @@
+name: Run TSX on Push
+
+on:
+  push:
+    branches:
+      - main  # sesuaikan kalau kamu pakai branch lain
+
+jobs:
+  run-tsx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run TSX file
+        run: |
+          npx tsx index.tsx
